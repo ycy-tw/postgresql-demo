@@ -14,7 +14,7 @@ set PGUSER=postgres
 
 ### CREATE TABLE
 
-```SQL=
+```SQL
 CREATE TABLE price (
 	symbol 	integer PRIMARY KEY,
 	name	character(255),
