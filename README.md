@@ -1,7 +1,7 @@
 # PostgreSQL-Demo
 
 ### psql command
-```sql=
+```SQL
 set PGUSER=postgres
 \! cls   -- clean screen
 \! clear     -- clean screen
