@@ -14,7 +14,7 @@ set PGUSER=postgres
 
 ### CREATE TABLE
 
-```sql=
+```SQL
 CREATE TABLE price (
 	symbol 	integer PRIMARY KEY,
 	name	character(255),
@@ -36,13 +36,13 @@ CREATE TABLE basic_info (
 ```
 
 ### Insert data from .csv
-```sql=
+```SQL
 \copy price FROM 'C:/Users/user/price.csv' DELIMITER ',' CSV HEADER ;
 ```
 
 
 ### Insert data.
-```sql=
+```SQL
 INSERT INTO price (symbol, name, shares, volume, open, high, low, close, ret)
 VALUES (9999, '測試', 20000, 150233121, 20.5, 21, 20.1, 20.8, 0.014);
 
