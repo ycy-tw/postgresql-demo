@@ -14,7 +14,7 @@ set PGUSER=postgres
 
 ### CREATE TABLE
 
-```SQL
+```SQL=
 CREATE TABLE price (
 	symbol 	integer PRIMARY KEY,
 	name	character(255),
@@ -51,27 +51,27 @@ VALUES (9999, '測試', '測試產業', '2020-01-03');
 ```
 
 ### Update column values.
-```sql=
+```SQL
 UPDATE price
 SET ret = ret * 100;
 ```
 
 
 ### Get stocks which close price under 10. 
-```sql=
+```SQL
 SELECT * FROM price
 WHERE price.close < 10;
 ```
 
 ### Get each stock's industry. Combined two tables with symbols.
-```sql=
+```SQL
 SELECT price.ret, basic_info.industry
 FROM price, basic_info
 WHERE price.symbol = basic_info.symbol;
 ```
 
 ### Get industry average daily return.
-```sql=
+```SQL
 SELECT cast(AVG(ret) as decimal(10,3)), industry FROM (
 	SELECT price.ret, basic_info.industry
 	FROM price, basic_info
@@ -82,7 +82,7 @@ GROUP BY industry;
 
 ### Sort by average return.
 #### 
-```sql=
+```SQL
 -- ASC  <-- e.g. 10, 9, ..., 2 ,1
 -- DESC 
 
@@ -96,14 +96,14 @@ ORDER BY AVG(ret) DESC;
 ```
 
 ### Delete all values in table.
-```sql=
+```SQL
 DELETE FROM price;
 DELETE FROM basic_info;
 ```
 
 ### Or just Drop it.
 
-```sql=
+```SQL
 DROP TABLE price, basic_info;
 ```
 
@@ -111,7 +111,7 @@ DROP TABLE price, basic_info;
 
 # PostgreSQL Official Document Tutorial
 
-```sql=
+```SQL
 createdb dbname
 dropdb dbname
 
@@ -125,7 +125,7 @@ Two dashes (“--”) introduce comments. Whatever follows them is ignored up to
 
 
 # Create
-```sql=
+```SQL
 CREATE TABLE tablename (
 column1 dataTypeOfColumn1,   -- Description of column1
 column2 dataTypeOfColumn2,
@@ -137,53 +137,53 @@ column3 dataTypeOfColumn3,
 
 # Create
 INSERT INTO tablename VALUES(valueOfColumn1, valueOfColumn2, valueOfColumn3);
-```sql=
+```SQL
 INSERT INTO weather (column1, column2, column3)
 VALUES (valueOfColumn1, valueOfColumn2, valueOfColumn3);
 ```
 
 You can list the columns in a different order if you wish or even omit some columns,
-```sql=
+```SQL
 INSERT INTO weather (column3, column2)
 VALUES (valueOfColumn3, valueOfColumn2);
 ```
 
 # Read
-```sql=
+```SQL
 SELECT * FROM tablename;
 SELECT column1, column2, column3 FROM tablename;
 ```
 
-```sql=
+```SQL
 --- Notice how the AS clause is used to relabel the output column. (The AS clause is optional.)
 SELECT column1, (column2 + column3)/2 AS avg_column_2_3 FROM tablename;
 ```
 
-```sql=
+```SQL
 SELECT * FROM tablename
 WHERE column1 = 'xxx' AND column2 > 0.5;
 ```
 
-```sql=
+```SQL
 SELECT * FROM tablename
 ORDER BY column1;
 ```
 
 You can request that duplicate rows be removed from the result of a query
-```sql=
+```SQL
 SELECT DISTINCT column1
 FROM tablename;
 ```
 
 join two tables
-```sql=
+```SQL
 SELECT col1_table1 col2_table1 col1_table2  col2_table2
 FROM tablename1, tablename2;
 WHERE col1_tablename1 = col3_tablename2;
 ```
 
 If there were duplicate column names in the two tables you'd need to qualify the column names to show which one you meant.
-```sql=
+```SQL
 SELECT col1_table1.tablename1 col2_table1.tablename1 col1_table2.tablename2  col2_table2.tablename2
 FROM tablename1, tablename2;
 WHERE col1_tablename1.tablename1 = col3_tablename2.tablename2;
@@ -191,7 +191,7 @@ WHERE col1_tablename1.tablename1 = col3_tablename2.tablename2;
 
 If no matching row is found we want some “empty values” to be substituted for the tablename1 table's columns. This kind of query is called an outer join.
 
-```sql=
+```SQL
 SELECT *
 FROM tablename1 LEFT OUTER JOIN tablename2 ON (col1_tablename1.tablename1 =
 col3_tablename2.tablename2);
@@ -203,14 +203,14 @@ that match some row of the left table. When outputting a left-table row for whic
 match, empty (null) values are substituted for the right-table columns.
 
 
-```sql=
+```SQL
 SELECT max(column1) FROM tablename1;
 
 SELECT column1 FROM tablename1
 WHERE column2 = (SELECT max(column2) FROM tablename1);
 ```
 
-```sql=
+```SQL
 SELECT column1, max(column2)
 FROM tablename1
 GROUP BY column1;
@@ -220,7 +220,7 @@ The fundamental difference between WHERE and HAVING is this: WHERE selects input
 and aggregates are computed (thus, it controls which rows go into the aggregate computation), whereas
 HAVING selects group rows after groups and aggregates are computed.
 
-```sql=
+```SQL
 SELECT column1, max(column2)
 FROM tablename1
 GROUP BY column1;
@@ -233,7 +233,7 @@ aggregate calculations for all rows that fail the WHERE check.
 
 
 # Update
-```sql=
+```SQL
 UPDATE tablename1
 SET column2 = column2 - 2,
 WHERE column1 > 'XXXX-XX-XX';
@@ -242,16 +242,16 @@ WHERE column1 > 'XXXX-XX-XX';
 # Delete
 
 delete row
-```sql=
+```SQL
 DELETE FROM tablename1 WHERE column1 = 'XXXX-XX-XX';
 ```
 
 delete values in table.
-```sql=
+```SQL
 DELETE FROM tablename1;
 ```
 
 delete table.
-```sql=
+```SQL
 DROP TABLE tablename;
 ```
