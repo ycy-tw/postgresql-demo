@@ -12,7 +12,7 @@ set PGUSER=postgres
 \dt+ -- show all tables and descriptions
 ```
 
-### CREATE TABLE
+### Create table
 
 ```SQL
 CREATE TABLE price (
@@ -101,7 +101,7 @@ DELETE FROM price;
 DELETE FROM basic_info;
 ```
 
-### Or just Drop it.
+### Or just drop it.
 
 ```SQL
 DROP TABLE price, basic_info;
