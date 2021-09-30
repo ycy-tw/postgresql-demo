@@ -83,8 +83,8 @@ GROUP BY industry;
 ### Sort by average return.
 #### 
 ```SQL
--- ASC  <-- e.g. 10, 9, ..., 2 ,1
--- DESC 
+-- ASC
+-- DESC <-- e.g. 10, 9, ..., 2 ,1
 
 SELECT cast(AVG(ret) as decimal(10,3)), industry FROM (
 	SELECT price.ret, basic_info.industry
